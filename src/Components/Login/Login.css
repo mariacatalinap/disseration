@@ -73,12 +73,12 @@
     cursor: pointer;
 }
 
-.submit-container{
+.submit-container {
     display: flex;
-    justify-content: center; /* This will center the buttons horizontally */
-    gap: 30px;
-    margin-top: 60px; /* Adjusted for better spacing */
-}
+    justify-content: center;
+    gap: 10px; /* Adjust the gap as needed */
+    margin-top: 20px; /* Adjust the margin as needed */
+  }
 
 .submit{
     display: flex;
@@ -98,3 +98,4 @@
    background: #eaeaea;
    color: #676767; 
 }
+

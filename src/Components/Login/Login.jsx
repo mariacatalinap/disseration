@@ -5,8 +5,6 @@ import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 
-axios.defaults.baseURL = 'http://localhost:8080';
-
 const Login = () => {
   const [action, setAction] = useState("Login");
   const [email, setEmail] = useState("");
@@ -14,14 +12,14 @@ const Login = () => {
   const [name, setName] = useState("");
 
   const handleAuthAction = async (e) => {
-    e.preventDefault();
-    const url = action === "Login" ? "/auth/login" : "/auth/signup";
+    e.preventDefault(); 
+    const baseUrl = "http://localhost:8080";
+    const url = `${baseUrl}${action === "Login" ? "/auth/login" : "/auth/signup"}`;
     const payload = action === "Login" ? { email, password } : { name, email, password };
 
     try {
       const response = await axios.post(url, payload);
       console.log(response.data);
-      localStorage.setItem('token', response.data.token);
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
@@ -74,14 +72,13 @@ const Login = () => {
           <button type="submit" className="submit">
             {action}
           </button>
-          <button type="button" className="submit gray" onClick={() => setAction(action === "Login" ? "Sign up" : "Login")}>
+          <button type="button" className="gray submit" onClick={() => setAction(action === "Login" ? "Sign up" : "Login")}>
             {action === "Login" ? "Sign up" : "Login"}
           </button>
         </div>
       </form>
     </div>
   );
-
-}
+};
 
 export default Login;
